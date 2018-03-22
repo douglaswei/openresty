@@ -7,4 +7,4 @@ ngx.var.rdata = data
 -- if md5 is wrong: rewrite 400
 --
 -- todo : just return 200, ok
-ngx.say(string.format("[%s][%s]", data, md5))
+ngx.say(string.format("[%s][%s][%s]", data, md5, ngx.var.time_local))
