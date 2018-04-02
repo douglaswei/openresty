@@ -3,7 +3,7 @@ local cjson = require "cjson"
 local producer = require "resty.kafka.producer"  
 -- 定义kafka broker地址，ip需要和kafka的host.name配置一致  
 local broker_list = {  
-    { host = "172.17.176.47", port = 9092 },  
+    { host = KAFKA_HOST, port = KAFKA_PORT },  
 }  
 -- 定义json便于日志数据整理收集  
 local log_json = {}  
@@ -30,7 +30,6 @@ local bp = producer:new(broker_list, { producer_type = "async" })
 -- key为nill(空)时，一段时间向同一partition写入数据  
             -- 指定key，按照key的hash写入到对应的partition  
 local ok, err = bp:send("test", nil, message)  
-local ok, err = bp:send("test", nil, ngx.var.rdata)  
 
 if not ok then  
     ngx.log(ngx.ERR, "kafka send err:", err)  
