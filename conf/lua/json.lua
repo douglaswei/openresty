@@ -3,6 +3,7 @@ local arg = ngx.req.get_post_args()
 data = arg["data"]
 md5 = arg["md5"]
 ngx.var.rdata = data
+ngx.var.fmt_localtime = ngx.localtime()
 -- md5 check
 -- if md5 is wrong: rewrite 400
 md5_check = ngx.md5(data .. "xws123")

@@ -13,7 +13,7 @@ log_json["host"]=ngx.var.host
 --log_json["request_body"]=ngx.var.request_body  
 log_json["remote_addr"] = ngx.var.remote_addr  
 log_json["remote_user"] = ngx.var.remote_user  
-log_json["time_local"] = ngx.var.time_local  
+log_json["time_local"] = ngx.localtime()
 --log_json["status"] = ngx.var.status  
 log_json["body_bytes_sent"] = ngx.var.body_bytes_sent  
 log_json["http_referer"] = ngx.var.http_referer  
@@ -29,7 +29,7 @@ local bp = producer:new(broker_list, { producer_type = "async" })
 -- 发送日志消息,send第二个参数key,用于kafka路由控制:  
 -- key为nill(空)时，一段时间向同一partition写入数据  
             -- 指定key，按照key的hash写入到对应的partition  
-local ok, err = bp:send("test", nil, message)  
+local ok, err = bp:send("ngx", nil, message)  
 
 if not ok then  
     ngx.log(ngx.ERR, "kafka send err:", err)  
