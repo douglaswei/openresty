@@ -1,3 +1,7 @@
+if ngx.var.flag == 0 then
+    return
+end
+
 -- 引入lua所有api  
 local cjson = require "cjson"  
 local producer = require "resty.kafka.producer"  
@@ -7,7 +11,7 @@ local broker_list = {
 }  
 -- 定义json便于日志数据整理收集  
 local log_json = {}  
-log_json["uri"]=ngx.var.uri  
+--log_json["uri"]=ngx.var.uri  
 log_json["args"]=ngx.var.args  
 log_json["host"]=ngx.var.host  
 --log_json["request_body"]=ngx.var.request_body  

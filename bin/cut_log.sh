@@ -10,12 +10,10 @@ function mk_path_if_not_exist ()
     fi
 }
 
-mk_path_if_not_exist ${LOGS_PATH}/access
 mk_path_if_not_exist ${LOGS_PATH}/error
 mk_path_if_not_exist ${LOGS_PATH}/post
 
 
-mv ${LOGS_PATH}/access.log ${LOGS_PATH}/access/${LAST_HOUR}.log
 mv ${LOGS_PATH}/error.log ${LOGS_PATH}/error/${LAST_HOUR}.log
 mv ${LOGS_PATH}/post.log ${LOGS_PATH}/post/${LAST_HOUR}.log
 
